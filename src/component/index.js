@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react';
 import { commands } from '~/utils/constants';
 import { getChunks } from '~/chunks';
 import { setSelection } from '~/utils/selection';
+import { getText } from '~/state';
 
 class Editor extends React.PureComponent {
   constructor(props) {
@@ -55,11 +56,7 @@ class Editor extends React.PureComponent {
       name,
       editorState
     } = this.props;
-    const text = editorState.before +
-      editorState.startTag +
-      editorState.selection +
-      editorState.endTag +
-      editorState.after;
+    const text = getText(editorState);
 
     return (
       <textarea
