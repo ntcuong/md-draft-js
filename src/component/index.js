@@ -19,9 +19,9 @@ class Editor extends React.PureComponent {
       selection
     } = this.props.editorState;
 
-    return nextProps.before !== before ||
-      nextProps.after !== after ||
-      nextProps.selection !== selection;
+    return nextProps.editorState.before !== before ||
+      nextProps.editorState.after !== after ||
+      nextProps.editorState.selection !== selection;
   }
 
   componentDidUpdate() {
