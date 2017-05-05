@@ -6,7 +6,9 @@ import code from './codeblock';
 import heading from './heading';
 import hr from './hr';
 
-export function handleKeyCommand(state, command) {
+export function handleKeyCommand(editorState, command) {
+  const state = Object.assign({}, editorState, { focus: true });
+
   switch (command) {
     case 'bold':
       return bold(state);

@@ -16,7 +16,8 @@ export function getChunks(textarea) {
     startTag: '',
     endTag: '',
     scrollTop: textarea.scrollTop,
-    text: textarea.value
+    text: textarea.value,
+    focus: false
   };
 }
 

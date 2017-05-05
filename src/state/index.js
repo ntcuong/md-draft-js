@@ -8,7 +8,8 @@ export function createEmpty(text = '') {
     scrollTop: 0,
     start: 0,
     end: 0,
-    text
+    text,
+    focus: false
   };
 }
 

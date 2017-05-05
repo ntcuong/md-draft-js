@@ -1,30 +1,16 @@
-const doc = global.document;
-
-export function setSelection({ before, startTag, selection, endTag, after, scrollTop }, textarea) {
-  let range;
-
+export function setSelection({ before, startTag, selection, endTag, after, scrollTop, focus }, textarea) {
   const start = before.length + startTag.length;
   const end = start + selection.length;
 
   if (textarea.selectionStart !== undefined) {
-    textarea.focus();
+    if (focus) {
+      textarea.focus();
+    }
     /* eslint-disable no-param-reassign */
     textarea.selectionStart = start;
     textarea.selectionEnd = end;
     textarea.scrollTop = scrollTop;
     /* eslint-enable no-param-reassign */
-  } else if (doc.selection) {
-    if (doc.activeElement && doc.activeElement !== textarea) {
-      return;
-    }
-
-    textarea.focus();
-    range = textarea.createTextRange();
-    range.moveStart('character', -textarea.value.length);
-    range.moveEnd('character', -textarea.value.length);
-    range.moveEnd('character', end);
-    range.moveStart('character', start);
-    range.select();
   }
 }
 

@@ -22,7 +22,8 @@ class Editor extends React.PureComponent {
 
     return nextProps.editorState.before !== before ||
       nextProps.editorState.after !== after ||
-      nextProps.editorState.selection !== selection;
+      nextProps.editorState.selection !== selection ||
+      nextProps.className !== this.props.className;
   }
 
   componentDidUpdate() {
