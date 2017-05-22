@@ -28,11 +28,16 @@ class MyEditor extends React.Component {
     this.onChange(RichUtils.handleKeyCommand(this.state.editorState, 'italic'));
   }
 
+  onHeadingClick() {
+    this.onChange(RichUtils.handleKeyCommand(this.state.editorState, 'heading'));
+  }
+
   render() {
     return (
       <div>
         <button onClick={this.onBoldClick.bind(this)}>Bold</button>
         <button onClick={this.onItalicClick.bind(this)}>Italic</button>
+        <button onClick={this.onHeadingClick.bind(this)}>Heading</button>
         <Editor
           editorState={this.state.editorState}
           onKeyCommand={this.handleKeyCommand}

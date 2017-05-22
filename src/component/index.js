@@ -17,12 +17,16 @@ class Editor extends React.PureComponent {
     const {
       before,
       after,
+      startTag,
+      endTag,
       selection
     } = this.props.editorState;
 
     return nextProps.editorState.before !== before ||
       nextProps.editorState.after !== after ||
       nextProps.editorState.selection !== selection ||
+      nextProps.editorState.startTag !== startTag ||
+      nextProps.editorState.endTag !== endTag ||
       nextProps.className !== this.props.className;
   }
 

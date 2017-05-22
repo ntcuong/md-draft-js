@@ -29,7 +29,6 @@ export default function heading(chunks) {
   result.startTag = result.endTag = '';
   result = skip(result, { before: 1, after: 1 });
 
-  //
   const levelToCreate = level === 4 ? 1 :
     level + 1;
 
