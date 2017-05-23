@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import React from 'react';
+import commands from './commands';
 import { Editor, EditorState, RichUtils } from '../src';
-import { isBold } from '~/rich/bold';
-import { isItalic } from '~/rich/italic';
+import { isApplied } from '~/rich';
 
 const content = '# Sample title\n\nYour content goes here.';
 
@@ -23,28 +23,8 @@ export default class MyEditor extends React.Component {
     }
   }
 
-  onBoldClick() {
-    this.onChange(RichUtils.applyCommand(this.state.editorState, 'bold'));
-  }
-
-  onItalicClick() {
-    this.onChange(RichUtils.applyCommand(this.state.editorState, 'italic'));
-  }
-
-  onHeadingClick() {
-    this.onChange(RichUtils.applyCommand(this.state.editorState, 'heading'));
-  }
-
-  onQuoteClick() {
-    this.onChange(RichUtils.applyCommand(this.state.editorState, 'quote'));
-  }
-
-  onMonospaceClick() {
-    this.onChange(RichUtils.applyCommand(this.state.editorState, 'code'));
-  }
-
-  onListClick() {
-    this.onChange(RichUtils.applyCommand(this.state.editorState, 'ul'));
+  onClickCommand(command) {
+    this.onChange(RichUtils.applyCommand(this.state.editorState, command));
   }
 
   onLinkClick() {
@@ -67,65 +47,20 @@ export default class MyEditor extends React.Component {
     return (
       <div className="editor">
         <div className="editor-buttons">
-          <button
-            className={classNames('editor-action', isBold(this.state.editorState) ? 'active' : '')}
-            onClick={this.onBoldClick.bind(this)}
-            aria-label="Bold"
-          >
-            <span
-              className="glyphicon glyphicon-bold"
-              aria-hidden="true"
-            />
-          </button>
-          <button
-            className={classNames('editor-action', isItalic(this.state.editorState) ? 'active' : '')}
-            onClick={this.onItalicClick.bind(this)}
-            aria-label="Italic">
-            <span
-              className="glyphicon glyphicon-italic"
-              aria-hidden="true"
-            />
-          </button>
-          <button
-            className="editor-action"
-            onClick={this.onHeadingClick.bind(this)}
-            aria-label="Heading"
-          >
-            <span
-              className="glyphicon glyphicon-header"
-              aria-hidden="true"
-            />
-          </button>
-          <button
-            className="editor-action"
-            onClick={this.onQuoteClick.bind(this)}
-            aria-label="Quote"
-          >
-            <span
-              className="glyphicon glyphicon-comment"
-              aria-hidden="true"
-            />
-          </button>
-          <button
-            className="editor-action"
-            onClick={this.onMonospaceClick.bind(this)}
-            aria-label="Monospace"
-          >
-            <span
-              className="glyphicon glyphicon-console"
-              aria-hidden="true"
-            />
-          </button>
-          <button
-            className="editor-action"
-            onClick={this.onListClick.bind(this)}
-            aria-label="List"
-          >
-            <span
-              className="glyphicon glyphicon-list"
-              aria-hidden="true"
-            />
-          </button>
+          {commands.map(({ command, label, icon }) => (
+            <button
+              key={command}
+              className={classNames('editor-action', isApplied(this.state.editorState, command) ? 'active' : '')}
+              onClick={this.onClickCommand.bind(this, command)}
+              aria-label="Bold"
+            >
+              <span
+                key={`span-${command}`}
+                className={`glyphicon glyphicon-${icon || command}`}
+                aria-hidden="true"
+              />
+            </button>
+          ))}
           <button
             className="editor-action"
             onClick={this.onLinkClick.bind(this)}

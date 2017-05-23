@@ -1,9 +1,9 @@
-import bold from './bold';
-import italic from './italic';
+import bold, { isBold } from './bold';
+import italic, { isItalic } from './italic';
 import linkOrImage from './linkOrImageOrAttachment';
 import list from './list';
 import quote from './blockquote';
-import code from './codeblock';
+import code, { isCodeblock } from './codeblock';
 import heading from './heading';
 import hr from './hr';
 
@@ -33,5 +33,18 @@ export function applyCommand(editorState, command, url) {
       return linkOrImage(state, url, 'image');
     default:
       return state;
+  }
+}
+
+export function isApplied(state, command) {
+  switch (command) {
+    case 'bold':
+      return isBold(state);
+    case 'italic':
+      return isItalic(state);
+    case 'code':
+      return isCodeblock(state);
+    default:
+      return false;
   }
 }

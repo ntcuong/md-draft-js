@@ -21,6 +21,12 @@ export default function codeblock(chunks) {
   return inline(chunks);
 }
 
+export function isCodeblock(chunks) {
+  const outfenced = rfencebefore.test(chunks.before) && rfenceafter.test(chunks.after);
+
+  return outfenced;
+}
+
 function inline(chunks) {
   let result = trim(chunks);
   result = findTags(result, rbacktick, rbacktick);

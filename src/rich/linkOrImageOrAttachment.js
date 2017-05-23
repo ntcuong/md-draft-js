@@ -45,7 +45,10 @@ function pushDefinition({ chunks, definition, attachment }) {
 
   result.after += `\n\n${footnotes.join('\n')}`;
 
-  return anchorNumber;
+  return {
+    anchor: anchorNumber,
+    result
+  };
 
   function extractDefinitions(text) {
     rdefinitions.lastIndex = 0;
@@ -91,13 +94,12 @@ function pushDefinition({ chunks, definition, attachment }) {
 
 export default function linkOrImageOrAttachment(chunks, url, type) {
   const image = type === 'image';
-
-  const result = findTags(trim(chunks), /\s*!?\[/, /][ ]?(?:\n[ ]*)?(\[.*?])?/);
+  let result = findTags(trim(chunks), /\s*!?\[/, /][ ]?(?:\n[ ]*)?(\[.*?])?/);
 
   if (result.endTag.length > 1 && result.startTag.length > 0) {
     result.startTag = result.startTag.replace(/!?\[/, '');
     result.endTag = '';
-    pushDefinition({ result });
+    result = pushDefinition({ chunks: result }).result;
 
     return result;
   }
@@ -106,7 +108,7 @@ export default function linkOrImageOrAttachment(chunks, url, type) {
   result.startTag = result.endTag = '';
 
   if (/\n\n/.test(result.selection)) {
-    pushDefinition({ result });
+    result = pushDefinition({ chunks: result }).result;
 
     return result;
   }
@@ -115,11 +117,14 @@ export default function linkOrImageOrAttachment(chunks, url, type) {
   const link = parseLinkInput(url);
   const key = link.attachment ? '  [attachment-9999]: ' : ' [9999]: ';
   const definition = key + link.href + (link.title ? ` "${link.title}"` : '');
-  const anchor = pushDefinition({
-    result,
+  const definitionResult = pushDefinition({
+    chunks: result,
     definition,
     attachment: link.attachment
   });
+  const anchor = definitionResult.anchor;
+
+  result = definitionResult.result;
 
   if (!link.attachment) {
     add();
