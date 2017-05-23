@@ -31,3 +31,15 @@ export default function italic(chunks) {
 
   return result;
 }
+
+export function isItalic(chunks) {
+  const rleading = /^(_*)/;
+  const rtrailing = /(_*$)/;
+  const rnewlines = /\n{2,}/g;
+  const result = trim(chunks);
+  const leadDash = rtrailing.exec(result.before)[0];
+  const trailDash = rleading.exec(result.after)[0];
+  const fence = Math.min(leadDash.length, trailDash.length);
+
+  return fence >= 1 || (!result.selection.replace(rnewlines, '\n') && trailDash);
+}

@@ -11,7 +11,10 @@ export default function heading(chunks) {
 
   result = findTags(result, /#+[ ]*/, /[ ]*#+/);
 
-  if (/#+/.test(result.before + result.startTag)) {
+  const textBefore = result.before + result.startTag;
+  const currentText = textBefore.substring(textBefore.lastIndexOf('\n'));
+
+  if (/#+/.test(currentText)) {
     level = RegExp.lastMatch.length;
   }
 

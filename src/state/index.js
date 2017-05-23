@@ -1,16 +1,25 @@
-export function createEmpty(text = '') {
-  return {
+export function createEmpty(initialState) {
+  let result;
+
+  if (typeof initialState === 'string') {
+    result = {
+      before: initialState
+    };
+  } else if (typeof initialState === 'object') {
+    result = initialState;
+  }
+
+  return Object.assign({
     before: '',
-    after: text,
+    after: '',
     selection: '',
     startTag: '',
     endTag: '',
     scrollTop: 0,
     start: 0,
     end: 0,
-    text,
     focus: false
-  };
+  }, result);
 }
 
 export function getText(state) {

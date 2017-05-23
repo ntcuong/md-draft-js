@@ -4,12 +4,15 @@
   "description": "Markdown text editor for React",
   "main": "lib",
   "scripts": {
-    "lint": "eslint src webpack.config.js",
-    "lint:fix": "eslint src webpack.config.js --fix",
+    "lint": "eslint src webpack.config.js webpack.site.config.js",
+    "lint:fix": "eslint src webpack.config.js webpack.site.config.js --fix",
     "build": "rm -rf lib && babel src --out-dir lib/ --source-maps true",
-    "start": "webpack-dev-server",
-    "test": "npm run lint",
+    "build:site": "NODE_ENV=production webpack --config webpack.site.config.js -p",
+    "start": "webpack-dev-server --content-base playground",
+    "test": "npm run lint && mocha --compilers js:babel-core/register --recursive",
+    "tdd": "mocha --compilers js:babel-core/register --recursive --watch",
     "preversion": "npm test && npm run build",
+    "version": "npm run build:site",
     "postversion": "git push origin HEAD && git push origin $(git describe --tags) && npm publish"
   },
   "repository": {
@@ -23,7 +26,8 @@
   },
   "homepage": "https://github.com/nescalante/md-draft-js",
   "dependencies": {
-    "is-key-combo": "^1.0.3"
+    "is-key-combo": "^1.0.3",
+    "prop-types": "^15.5.7"
   },
   "devDependencies": {
     "autoprefixer": "^6.5.1",
@@ -39,6 +43,9 @@
     "babel-preset-react": "^6.11.0",
     "babel-root-import": "^4.1.0",
     "babel-runtime": "^6.11.6",
+    "chai": "^3.5.0",
+    "classnames": "^2.2.5",
+    "enzyme": "^2.8.2",
     "eslint": "^3.7.1",
     "eslint-config-airbnb": "^12.0.0",
     "eslint-import-resolver-babel-root-import": "0.0.2",
@@ -47,6 +54,7 @@
     "eslint-plugin-react": "^6.3.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "json-loader": "^0.5.4",
+    "mocha": "^3.4.1",
     "react": "^15.4.0",
     "react-dom": "^15.4.0",
     "react-hot-loader": "^3.0.0-beta.6",
@@ -55,6 +63,7 @@
     "webpack-dev-server": "^1.16.2"
   },
   "peerDependencies": {
+    "prop-types": "^15.5.7",
     "react": "^15.4.0",
     "react-dom": "^15.4.0"
   }

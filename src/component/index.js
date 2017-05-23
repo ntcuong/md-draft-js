@@ -1,11 +1,30 @@
 import isKeyCombo from 'is-key-combo';
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { commands } from '~/utils/constants';
 import { getChunks } from '~/chunks';
 import { setSelection } from '~/utils/selection';
 import { getText } from '~/state';
 
-class Editor extends React.PureComponent {
+export default class Editor extends React.PureComponent {
+  static defaultProps = {
+    content: '',
+    name: 'content',
+    onChange: () => {},
+    onKeyCommand: () => {},
+    commands
+  };
+
+  static propTypes = {
+    autoFocus: PropTypes.bool,
+    editorState: PropTypes.object,
+    className: PropTypes.string,
+    name: PropTypes.string,
+    onChange: PropTypes.func,
+    onKeyCommand: PropTypes.func,
+    commands: PropTypes.array
+  };
+
   constructor(props) {
     super(props);
 
@@ -14,20 +33,16 @@ class Editor extends React.PureComponent {
   }
 
   shouldComponentUpdate(nextProps) {
-    const {
-      before,
-      after,
-      startTag,
-      endTag,
-      selection
-    } = this.props.editorState;
+    const props = [
+      'before',
+      'after',
+      'startTag',
+      'endTag',
+      'selection'
+    ];
 
-    return nextProps.editorState.before !== before ||
-      nextProps.editorState.after !== after ||
-      nextProps.editorState.selection !== selection ||
-      nextProps.editorState.startTag !== startTag ||
-      nextProps.editorState.endTag !== endTag ||
-      nextProps.className !== this.props.className;
+    return nextProps.className !== this.props.className ||
+      props.some(prop => nextProps.editorState[prop] !== this.props[prop]);
   }
 
   componentDidUpdate() {
@@ -35,15 +50,9 @@ class Editor extends React.PureComponent {
   }
 
   handleKeyDown(e) {
-    const prevented = this.props.commands.map(({ combo }) => combo);
-    const isPrevented = prevented.some(combo => isKeyCombo(e, combo));
-
-    if (isPrevented) {
-      e.preventDefault();
-    }
-
     this.props.commands.forEach(({ combo, command }) => {
       if (isKeyCombo(e, combo)) {
+        e.preventDefault();
         this.props.onKeyCommand(command);
       }
     });
@@ -58,6 +67,7 @@ class Editor extends React.PureComponent {
 
   render() {
     const {
+      autoFocus,
       name,
       editorState
     } = this.props;
@@ -66,6 +76,7 @@ class Editor extends React.PureComponent {
     return (
       <textarea
         data-test-id="editor-text-area"
+        autoFocus={autoFocus}
         ref={(c) => { this.textarea = c; }}
         id={name}
         name={name}
@@ -78,22 +89,3 @@ class Editor extends React.PureComponent {
     );
   }
 }
-
-Editor.defaultProps = {
-  content: '',
-  name: 'content',
-  onChange: () => {},
-  onKeyCommand: () => {},
-  commands
-};
-
-Editor.propTypes = {
-  editorState: PropTypes.object,
-  className: PropTypes.string,
-  name: PropTypes.string,
-  onChange: PropTypes.func,
-  onKeyCommand: PropTypes.func,
-  commands: PropTypes.array
-};
-
-export default Editor;

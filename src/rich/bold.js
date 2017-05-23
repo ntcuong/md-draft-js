@@ -31,7 +31,17 @@ export default function bold(chunks) {
     result.after = markup + result.after;
   }
 
-  result.text = result.before + result.selection + result.after;
-
   return result;
+}
+
+export function isBold(chunks) {
+  const rleading = /^(\**)/;
+  const rtrailing = /(\**$)/;
+  const rnewlines = /\n{2,}/g;
+  const result = trim(chunks);
+  const leadStars = rtrailing.exec(result.before)[0];
+  const trailStars = rleading.exec(result.after)[0];
+  const fence = Math.min(leadStars.length, trailStars.length);
+
+  return fence >= 2 || (!result.selection.replace(rnewlines, '\n') && trailStars);
 }

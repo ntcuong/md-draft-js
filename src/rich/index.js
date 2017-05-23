@@ -1,12 +1,13 @@
 import bold from './bold';
 import italic from './italic';
+import linkOrImage from './linkOrImageOrAttachment';
 import list from './list';
 import quote from './blockquote';
 import code from './codeblock';
 import heading from './heading';
 import hr from './hr';
 
-export function handleKeyCommand(editorState, command) {
+export function applyCommand(editorState, command, url) {
   const state = Object.assign({}, editorState, { focus: true });
 
   switch (command) {
@@ -26,6 +27,10 @@ export function handleKeyCommand(editorState, command) {
       return list(state, true);
     case 'heading':
       return heading(state);
+    case 'link':
+      return linkOrImage(state, url, 'link');
+    case 'image':
+      return linkOrImage(state, url, 'image');
     default:
       return state;
   }
