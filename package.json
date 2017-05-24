@@ -17,14 +17,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nescalante/md-draft-js.git"
+    "url": "https://github.com/mulesoft-labs/md-draft-js.git"
   },
   "author": "MuleSoft",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nescalante/md-draft-js/issues"
+    "url": "https://github.com/mulesoft-labs/md-draft-js/issues"
   },
-  "homepage": "https://github.com/nescalante/md-draft-js",
+  "homepage": "https://github.com/mulesoft-labs/md-draft-js",
   "dependencies": {
     "is-key-combo": "^1.0.3",
     "prop-types": "^15.5.7"

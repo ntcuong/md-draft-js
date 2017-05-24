@@ -2,7 +2,7 @@
 
 Markdown editor framework based on <a href="https://draftjs.org">Draft.js</a> that works with an immutable state and utility functions to modify it.
 
-Live demo [here](http://nescalante.github.io/md-draft-js)!
+Live demo [here](http://mulesoft-labs.github.io/md-draft-js)!
 
 ## Install
 
@@ -96,7 +96,7 @@ class MyEditor extends React.Component {
 
 ## Fully working example
 
-See [this file](https://github.com/nescalante/md-draft-js/blob/master/playground/app.js) to check a fully working example.
+See [this file](https://github.com/mulesoft-labs/md-draft-js/blob/master/playground/app.js) to check a fully working example.
 
 ## License
 
