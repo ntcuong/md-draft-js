@@ -1,5 +1,5 @@
 import { applyCommand } from '~/rich';
-import { createEmpty } from '~/state';
+import { createEmpty, getText } from '~/state';
 import { expect } from 'chai';
 
 describe('heading enrichment', () => {
@@ -66,5 +66,16 @@ describe('heading enrichment', () => {
     expect(result.before).to.eql('asd\n\n# title1\n\n');
     expect(result.selection).to.eql('foo');
     expect(result.startTag).to.eql('# ');
+  });
+
+  it('should create an h4 for selected text', () => {
+    const state = createEmpty({
+      selection: 'foo'
+    });
+    const result = applyCommand(state, 'heading', 4);
+
+    expect(result.selection).to.eql('foo');
+    expect(result.startTag).to.eql('#### ');
+    expect(getText(result)).to.eql('#### foo');
   });
 });
