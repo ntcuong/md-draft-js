@@ -1,6 +1,6 @@
 # Markdown draft.js
 
-Markdown editor framework based on <a href="https://draftjs.org">Draft.js</a> that works with an immutable state and utility functions to modify it.
+Markdown editor framework that works with an immutable state and utility functions to modify it.
 
 Live demo [here](http://mulesoft-labs.github.io/md-draft-js)!
 
