@@ -2,7 +2,7 @@ import { applyCommand } from '~/rich';
 import { createEmpty } from '~/state';
 import { expect } from 'chai';
 
-describe('bold enrichment', () => {
+describe('heading enrichment', () => {
   it('should create an h1 after text', () => {
     const state = createEmpty('foo');
     const result = applyCommand(state, 'heading');

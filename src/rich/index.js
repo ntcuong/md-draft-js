@@ -7,7 +7,7 @@ import code, { isCodeblock } from './codeblock';
 import heading from './heading';
 import hr from './hr';
 
-export function applyCommand(editorState, command, url) {
+export function applyCommand(editorState, command, metadata) {
   const state = Object.assign({}, editorState, { focus: true });
 
   switch (command) {
@@ -26,11 +26,11 @@ export function applyCommand(editorState, command, url) {
     case 'ol':
       return list(state, true);
     case 'heading':
-      return heading(state);
+      return heading(state, metadata);
     case 'link':
-      return linkOrImage(state, url, 'link');
+      return linkOrImage(state, metadata, 'link');
     case 'image':
-      return linkOrImage(state, url, 'image');
+      return linkOrImage(state, metadata, 'image');
     default:
       return state;
   }
