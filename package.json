@@ -27,7 +27,7 @@
   "homepage": "https://github.com/mulesoft-labs/md-draft-js",
   "dependencies": {
     "is-key-combo": "^1.0.3",
-    "parse-link-input": "^0.1.0",
+    "parse-link-input": "^1.1.0",
     "prop-types": "^15.5.7"
   },
   "devDependencies": {
