@@ -7,7 +7,7 @@ describe('bold enrichment', () => {
     const state = createEmpty({
       before: 'foo ',
       selection: 'bar',
-      after: ' baz',
+      after: ' baz'
     });
     const result = applyCommand(state, 'bold');
 
@@ -20,7 +20,7 @@ describe('bold enrichment', () => {
     const state = createEmpty({
       before: 'foo **',
       selection: 'bar',
-      after: '** baz',
+      after: '** baz'
     });
     const result = applyCommand(state, 'bold');
 

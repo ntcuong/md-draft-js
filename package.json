@@ -4,8 +4,8 @@
   "description": "Markdown text editor for React",
   "main": "lib",
   "scripts": {
-    "lint": "eslint src webpack.config.js webpack.site.config.js",
-    "lint:fix": "eslint src webpack.config.js webpack.site.config.js --fix",
+    "lint": "eslint src test webpack.config.js webpack.site.config.js",
+    "lint:fix": "eslint src test webpack.config.js webpack.site.config.js --fix",
     "build": "rm -rf lib && babel src --out-dir lib/ --source-maps true",
     "build:site": "NODE_ENV=production webpack --config webpack.site.config.js -p",
     "start": "webpack-dev-server --content-base playground",

@@ -7,7 +7,7 @@ describe('italic enrichment', () => {
     const state = createEmpty({
       before: 'foo ',
       selection: 'bar',
-      after: ' baz',
+      after: ' baz'
     });
     const result = applyCommand(state, 'italic');
 
@@ -20,7 +20,7 @@ describe('italic enrichment', () => {
     const state = createEmpty({
       before: 'foo _',
       selection: 'bar',
-      after: '_ baz',
+      after: '_ baz'
     });
     const result = applyCommand(state, 'italic');
 

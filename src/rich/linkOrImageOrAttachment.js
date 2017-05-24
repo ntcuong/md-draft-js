@@ -6,7 +6,7 @@ const rattachment = /^attachment-(\d+)$/i;
 
 function pushDefinition({ chunks, definition, attachment }) {
   let anchor = 0;
-  const regex = /(\[)((?:\[[^\]]*]|[^[]])*)(][ ]?(?:\n[ ]*)?\[)((?:attachment-)?\d+)(])/g;
+  const regex = /(\[)((?:\[[^\]]*\]|[^[\]])*)(\][ ]?(?:\n[ ]*)?\[)((?:attachment-)?\d+)(\])/g;
   const definitions = {};
   const footnotes = [];
   const result = Object.assign({}, chunks);
@@ -86,6 +86,7 @@ function pushDefinition({ chunks, definition, attachment }) {
 
     if (definitions[linkDefinition]) {
       pushAnchor(definitions[linkDefinition]);
+
       return before + inner + afterInner + anchor + end;
     }
     return all;
