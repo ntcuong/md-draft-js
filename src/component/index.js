@@ -51,7 +51,7 @@ export default class Editor extends React.PureComponent {
 
   handleKeyDown(e) {
     this.props.commands.forEach((command) => {
-      if (isKeyCombo(e, command.combo)) {
+      if (command.combo && isKeyCombo(e, command.combo)) {
         e.preventDefault();
         this.props.onKeyCommand(command);
       }
