@@ -15,8 +15,8 @@ export default class MyEditor extends React.Component {
     this.handleKeyCommand = this.handleKeyCommand.bind(this);
   }
 
-  handleKeyCommand(command) {
-    const newState = RichUtils.applyCommand(this.state.editorState, command);
+  handleKeyCommand({ key }) {
+    const newState = RichUtils.applyCommand(this.state.editorState, key);
 
     if (newState) {
       this.onChange(newState);
@@ -47,15 +47,15 @@ export default class MyEditor extends React.Component {
     return (
       <div className="editor">
         <div className="editor-buttons">
-          {commands.map(({ command, label, icon }) => (
+          {commands.map(({ command, label, icon }, key) => (
             <button
-              key={command}
+              key={key}
               className={classNames('editor-action', isApplied(this.state.editorState, command) ? 'active' : '')}
               onClick={this.onClickCommand.bind(this, command)}
               aria-label="Bold"
             >
               <span
-                key={`span-${command}`}
+                key={`span-${key}`}
                 className={`glyphicon glyphicon-${icon || command}`}
                 aria-hidden="true"
               />
