@@ -5,10 +5,10 @@ export const commands = [{
   combo: 'cmd+i',
   command: 'italic'
 }, {
-  combo: 'cmd+j',
+  combo: 'cmd+e',
   command: 'quote'
 }, {
-  combo: 'cmd+e',
+  combo: 'cmd+j',
   command: 'code'
 }, {
   combo: 'cmd+o',
