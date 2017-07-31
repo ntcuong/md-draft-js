@@ -39,7 +39,7 @@ export default class MyEditor extends React.Component {
     const image = global.prompt('Image URL:');
 
     if (image) {
-      this.onChange(RichUtils.applyCommand(this.state.editorState, 'image', image));
+      this.onChange(RichUtils.applyCommand(this.state.editorState, 'media', image));
     }
   }
 

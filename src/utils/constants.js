@@ -24,16 +24,10 @@ export const commands = [{
   command: 'link'
 }, {
   combo: 'cmd+g',
-  command: 'image'
+  command: 'media'
 }, {
   combo: 'cmd+h',
   command: 'hr'
-}, {
-  combo: 'cmd+y',
-  command: 'redo'
-}, {
-  combo: 'cmd+z',
-  command: 'undo'
 }];
 
 export const settings = {

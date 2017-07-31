@@ -1,6 +1,6 @@
 import bold, { isBold } from './bold';
 import italic, { isItalic } from './italic';
-import linkOrImage from './linkOrImageOrAttachment';
+import linkOrMedia from './linkOrMediaOrAttachment';
 import list from './list';
 import quote from './blockquote';
 import code, { isCodeblock } from './codeblock';
@@ -28,9 +28,9 @@ export function applyCommand(editorState, command, metadata) {
     case 'heading':
       return heading(state, metadata);
     case 'link':
-      return linkOrImage(state, metadata, 'link');
-    case 'image':
-      return linkOrImage(state, metadata, 'image');
+      return linkOrMedia(state, metadata, 'link');
+    case 'media':
+      return linkOrMedia(state, metadata, 'media');
     default:
       return state;
   }
