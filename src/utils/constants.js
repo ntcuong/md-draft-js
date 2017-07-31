@@ -1,33 +1,33 @@
 export const commands = [{
   combo: 'cmd+b',
-  command: 'bold'
+  key: 'bold'
 }, {
   combo: 'cmd+i',
-  command: 'italic'
+  key: 'italic'
 }, {
   combo: 'cmd+e',
-  command: 'quote'
+  key: 'quote'
 }, {
   combo: 'cmd+j',
-  command: 'code'
+  key: 'code'
 }, {
   combo: 'cmd+o',
-  command: 'ol'
+  key: 'ol'
 }, {
   combo: 'cmd+u',
-  command: 'ul'
+  key: 'ul'
 }, {
   combo: 'cmd+d',
-  command: 'heading'
+  key: 'heading'
 }, {
   combo: 'cmd+k',
-  command: 'link'
+  key: 'link'
 }, {
   combo: 'cmd+g',
-  command: 'media'
+  key: 'media'
 }, {
   combo: 'cmd+h',
-  command: 'hr'
+  key: 'hr'
 }];
 
 export const settings = {
