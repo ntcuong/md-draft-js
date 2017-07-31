@@ -10,7 +10,7 @@ export default class MyEditor extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { editorState: EditorState.createEmpty(content) };
+    this.state = { editorState: EditorState.createWithContent(content) };
     this.onChange = (editorState) => this.setState({ editorState });
     this.handleKeyCommand = this.handleKeyCommand.bind(this);
   }

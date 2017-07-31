@@ -1,10 +1,10 @@
 import { applyCommand } from '~/rich';
-import { createEmpty } from '~/state';
+import { createWithContent } from '~/state';
 import { expect } from 'chai';
 
 describe('link enrichment', () => {
   it('should add a link', () => {
-    const state = createEmpty({
+    const state = createWithContent({
       selection: 'foo'
     });
     const result = applyCommand(state, 'link', 'bar');
@@ -17,7 +17,7 @@ describe('link enrichment', () => {
   });
 
   it('should add a second link', () => {
-    const state = createEmpty({
+    const state = createWithContent({
       before: '[foo][1] ',
       selection: 'bar',
       after: '\n\n  [1]: http://baz'

@@ -1,10 +1,10 @@
 import { applyCommand } from '~/rich';
-import { createEmpty } from '~/state';
+import { createWithContent } from '~/state';
 import { expect } from 'chai';
 
 describe('italic enrichment', () => {
   it('should apply italic', () => {
-    const state = createEmpty({
+    const state = createWithContent({
       before: 'foo ',
       selection: 'bar',
       after: ' baz'
@@ -17,7 +17,7 @@ describe('italic enrichment', () => {
   });
 
   it('should remove italic', () => {
-    const state = createEmpty({
+    const state = createWithContent({
       before: 'foo _',
       selection: 'bar',
       after: '_ baz'

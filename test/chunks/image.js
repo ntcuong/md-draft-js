@@ -1,10 +1,10 @@
 import { applyCommand } from '~/rich';
-import { createEmpty } from '~/state';
+import { createWithContent } from '~/state';
 import { expect } from 'chai';
 
 describe('media enrichment', () => {
   it('should add an media', () => {
-    const state = createEmpty({
+    const state = createWithContent({
       selection: 'foo'
     });
     const result = applyCommand(state, 'media', 'bar');
@@ -17,7 +17,7 @@ describe('media enrichment', () => {
   });
 
   it('should add an media after a link', () => {
-    const state = createEmpty({
+    const state = createWithContent({
       before: '[foo][1] ',
       selection: 'bar',
       after: '\n\n  [1]: http://baz'

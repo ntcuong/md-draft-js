@@ -1,10 +1,10 @@
 import { applyCommand } from '~/rich';
-import { createEmpty } from '~/state';
+import { createWithContent } from '~/state';
 import { expect } from 'chai';
 
 describe('bold enrichment', () => {
   it('should apply bold', () => {
-    const state = createEmpty({
+    const state = createWithContent({
       before: 'foo ',
       selection: 'bar',
       after: ' baz'
@@ -17,7 +17,7 @@ describe('bold enrichment', () => {
   });
 
   it('should remove bold', () => {
-    const state = createEmpty({
+    const state = createWithContent({
       before: 'foo **',
       selection: 'bar',
       after: '** baz'

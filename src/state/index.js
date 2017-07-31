@@ -1,4 +1,18 @@
-export function createEmpty(initialState) {
+export function createEmpty() {
+  return {
+    before: '',
+    after: '',
+    selection: '',
+    startTag: '',
+    endTag: '',
+    scrollTop: 0,
+    start: 0,
+    end: 0,
+    focus: false
+  };
+}
+
+export function createWithContent(initialState) {
   let result;
 
   if (typeof initialState === 'string') {
@@ -9,17 +23,7 @@ export function createEmpty(initialState) {
     result = initialState;
   }
 
-  return Object.assign({
-    before: '',
-    after: '',
-    selection: '',
-    startTag: '',
-    endTag: '',
-    scrollTop: 0,
-    start: 0,
-    end: 0,
-    focus: false
-  }, result);
+  return Object.assign(createEmpty(), result);
 }
 
 export function getText(state) {

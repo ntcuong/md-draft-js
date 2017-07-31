@@ -1,10 +1,10 @@
 import { applyCommand } from '~/rich';
-import { createEmpty, getText } from '~/state';
+import { createWithContent, getText } from '~/state';
 import { expect } from 'chai';
 
 describe('heading enrichment', () => {
   it('should create an h1 after text', () => {
-    const state = createEmpty('foo');
+    const state = createWithContent('foo');
     const result = applyCommand(state, 'heading');
 
     expect(result.before).to.eql('foo\n\n');
@@ -13,7 +13,7 @@ describe('heading enrichment', () => {
   });
 
   it('should create an h1 for selected text', () => {
-    const state = createEmpty({
+    const state = createWithContent({
       selection: 'foo'
     });
     const result = applyCommand(state, 'heading');
@@ -23,7 +23,7 @@ describe('heading enrichment', () => {
   });
 
   it('should create an h2 for selected text', () => {
-    const state = createEmpty({
+    const state = createWithContent({
       before: '# ',
       selection: 'foo'
     });
@@ -34,7 +34,7 @@ describe('heading enrichment', () => {
   });
 
   it('should create an h1 when selected text is h4', () => {
-    const state = createEmpty({
+    const state = createWithContent({
       before: '#### ',
       selection: 'foo'
     });
@@ -45,7 +45,7 @@ describe('heading enrichment', () => {
   });
 
   it('should create an h1 when having an h1 before', () => {
-    const state = createEmpty({
+    const state = createWithContent({
       before: '# title1\n\n',
       selection: 'foo'
     });
@@ -57,7 +57,7 @@ describe('heading enrichment', () => {
   });
 
   it('should create an h1 when having an h1 and text before', () => {
-    const state = createEmpty({
+    const state = createWithContent({
       before: 'asd\n\n# title1\n\n',
       selection: 'foo'
     });
@@ -69,7 +69,7 @@ describe('heading enrichment', () => {
   });
 
   it('should create an h4 for selected text', () => {
-    const state = createEmpty({
+    const state = createWithContent({
       selection: 'foo'
     });
     const result = applyCommand(state, 'heading', 4);

@@ -22,7 +22,7 @@ import { Editor, EditorState } from 'md-draft-js';
 class MyEditor extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { editorState: EditorState.createEmpty('Your initial content') };
+    this.state = { editorState: EditorState.createWithContent('Your initial content') };
     this.onChange = (editorState) => this.setState({ editorState });
   }
 
