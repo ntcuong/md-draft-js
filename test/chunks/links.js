@@ -30,4 +30,15 @@ describe('link enrichment', () => {
     expect(result.startTag).to.eql('[');
     expect(result.endTag).to.eql('][2]');
   });
+
+  it('should do nothing', () => {
+    const state = createWithContent({
+      before: '[foo][1] ',
+      selection: 'bar',
+      after: '\n\n  [1]: http://baz'
+    });
+    const result = applyCommand(state, 'link', undefined);
+
+    expect(result).to.eql(Object.assign(state, { focus: true }));
+  });
 });

@@ -94,6 +94,10 @@ function pushDefinition({ chunks, definition, attachment }) {
 }
 
 export default function linkOrMediaOrAttachment(chunks, url, type) {
+  if (!url) {
+    return chunks;
+  }
+
   const media = type === 'media';
   let result = findTags(trim(chunks), /\s*!?\[/, /][ ]?(?:\n[ ]*)?(\[.*?])?/);
 
