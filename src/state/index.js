@@ -15,7 +15,9 @@ export function createEmpty() {
 export function createWithContent(initialState) {
   let result;
 
-  if (typeof initialState === 'string') {
+  if (!initialState) {
+    result = initialState;
+  } else if (typeof initialState === 'string') {
     result = {
       before: initialState
     };
