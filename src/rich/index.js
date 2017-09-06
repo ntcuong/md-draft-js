@@ -4,6 +4,7 @@ import linkOrMedia from './linkOrMediaOrAttachment';
 import list from './list';
 import quote from './blockquote';
 import code, { isCodeblock } from './codeblock';
+import notebook from './notebook';
 import heading from './heading';
 import hr from './hr';
 
@@ -21,6 +22,8 @@ export function applyCommand(editorState, command, metadata) {
       return quote(state);
     case 'code':
       return code(state);
+    case 'notebook':
+      return notebook(state);
     case 'ul':
       return list(state);
     case 'ol':
