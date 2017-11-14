@@ -8,20 +8,20 @@ const rfencebeforeinside = /^```notebook\n/;
 const rfenceafter = /^\n?```/;
 const rfenceafterinside = /\n```$/;
 
-export default function codeblock(chunks) {
+export default function notebook(chunks, metadata) {
   const newlined = rnewline.test(chunks.selection);
   const trailing = rtextafter.test(chunks.after);
   const leading = rtextbefore.test(chunks.before);
   const outfenced = rfencebefore.test(chunks.before) && rfenceafter.test(chunks.after);
 
   if (outfenced || newlined || !(leading || trailing)) {
-    return block(chunks, outfenced);
+    return block(chunks, outfenced, metadata);
   }
 
   return Object.assign({}, chunks, { startTag: '\n```notebook\n', endTag: '```\n' });
 }
 
-function block(chunks, outfenced) {
+function block(chunks, outfenced, metadata) {
   let result = Object.assign({}, chunks);
 
   if (outfenced) {
@@ -40,7 +40,7 @@ function block(chunks, outfenced) {
   if (!result.selection) {
     result.startTag = '```notebook\n';
     result.endTag = '\n```';
-    result.selection = '';
+    result.selection = metadata || '';
   } else if (rfencebeforeinside.test(result.selection) && rfenceafterinside.test(result.selection)) {
     result.selection = result.selection.replace(/(^```[a-z]*\n)|(```$)/g, '');
   } else if (/^[ ]{0,3}\S/m.test(result.selection)) {

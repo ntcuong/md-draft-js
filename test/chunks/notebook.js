@@ -32,4 +32,19 @@ describe('notebook enrichment', () => {
     expect(result.selection).to.eql('');
     expect(result.after).to.eql('\nquux');
   });
+
+  it('should apply notebook block with content', () => {
+    const state = createWithContent({
+      before: 'foo\n',
+      selection: '',
+      after: '\nbaz'
+    });
+    const result = applyCommand(state, 'notebook', 'content');
+
+    expect(result.startTag).to.eql('```notebook\n');
+    expect(result.endTag).to.eql('\n```');
+    expect(result.before).to.eql('foo\n\n');
+    expect(result.selection).to.eql('content');
+    expect(result.after).to.eql('\n\nbaz');
+  });
 });

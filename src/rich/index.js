@@ -23,7 +23,7 @@ export function applyCommand(editorState, command, metadata) {
     case 'code':
       return code(state);
     case 'notebook':
-      return notebook(state);
+      return notebook(state, metadata);
     case 'ul':
       return list(state);
     case 'ol':
