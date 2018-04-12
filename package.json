@@ -1,6 +1,6 @@
 {
   "name": "md-draft-js",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "Markdown text editor for React",
   "main": "lib",
   "scripts": {
