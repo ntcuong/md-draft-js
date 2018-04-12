@@ -46,7 +46,6 @@
     "babel-runtime": "^6.11.6",
     "chai": "^3.5.0",
     "classnames": "^2.2.5",
-    "enzyme": "^2.8.2",
     "eslint": "^3.7.1",
     "eslint-config-airbnb": "^12.0.0",
     "eslint-import-resolver-babel-root-import": "0.0.2",
@@ -56,16 +55,16 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "json-loader": "^0.5.4",
     "mocha": "^3.4.1",
-    "react": "^15.4.0",
-    "react-dom": "^15.4.0",
-    "react-hot-loader": "^3.0.0-beta.6",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
+    "react-hot-loader": "^4.0.1",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.16.2"
   },
   "peerDependencies": {
     "prop-types": "^15.5.7",
-    "react": "^15.4.0",
-    "react-dom": "^15.4.0"
+    "react": "^15.4.0 || ^16.0.0",
+    "react-dom": "^15.4.0 || ^16.0.0"
   }
 }

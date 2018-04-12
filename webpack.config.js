@@ -19,6 +19,10 @@ module.exports = {
     publicPath: '/assets/'
   },
 
+  devServer: {
+    hot: true
+  },
+
   plugins: [
     new webpack.HotModuleReplacementPlugin()
   ],
@@ -27,7 +31,6 @@ module.exports = {
     loaders: [{
       test: /\.js$/,
       loaders: [
-        'react-hot-loader/webpack',
         'babel'
       ],
       include: [

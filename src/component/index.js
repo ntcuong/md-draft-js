@@ -6,7 +6,7 @@ import { getChunks } from '~/chunks';
 import { setSelection } from '~/utils/selection';
 import { getText } from '~/state';
 
-export default class Editor extends React.PureComponent {
+export default class Editor extends React.Component {
   static defaultProps = {
     content: '',
     name: 'content',
